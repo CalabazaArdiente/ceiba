@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:ceiba_app/tools/design_system.dart';
 import 'package:ceiba_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import '../services/user_service.dart';
@@ -86,7 +87,7 @@ class _HomeViewState extends State<HomeView> {
         body: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(mainHorizontalPadding),
               child: TextField(
                 controller: _searchController,
                 decoration: const InputDecoration(
@@ -103,7 +104,8 @@ class _HomeViewState extends State<HomeView> {
                   : _filteredUsers.isEmpty
                       ? const Center(child: Text('List is empty'))
                       : Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding:
+                              const EdgeInsets.all(secondaryHorizontalPadding),
                           child: ListView.builder(
                             itemCount: _filteredUsers.length,
                             itemBuilder: (context, index) {

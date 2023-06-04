@@ -1,3 +1,4 @@
+import 'package:ceiba_app/tools/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'routes.dart';
@@ -9,29 +10,28 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       theme: ThemeData(
-        primaryColor: const Color.fromARGB(255, 11, 108, 15),
+        primaryColor: primaryColor,
+        appBarTheme: const AppBarTheme(color: primaryColor),
+        // color del AppBar
+        textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all(
+                primaryColorLight), // color del TextButton
+          ),
+        ),
+        inputDecorationTheme: const InputDecorationTheme(
+          focusedBorder: UnderlineInputBorder(
+            borderSide:
+                BorderSide(color: primaryColor), // color del borde inferior
+          ),
+          labelStyle: TextStyle(color: primaryColor), // color del labelText
+        ),
+        textSelectionTheme:
+            const TextSelectionThemeData(cursorColor: primaryColor),
       ),
       title: 'Prueba de ingreso',
       initialRoute: '/',
-      getPages: appRoutes, // Utiliza la propiedad getPages en lugar de routes
+      getPages: appRoutes,
     );
   }
 }
-//  appBarTheme: const AppBarTheme(
-//             color: Color.fromARGB(255, 11, 108, 15),
-//           ),
-//           textButtonTheme: TextButtonThemeData(
-//             style: TextButton.styleFrom(
-//               primary: Color.fromARGB(255, 11, 108, 15),
-//             ),
-//           ),
-//           inputDecorationTheme: const InputDecorationTheme(
-//             focusedBorder: UnderlineInputBorder(
-//               borderSide: BorderSide(
-//                 color: Color.fromARGB(255, 11, 108, 15),
-//               ),
-//             ),
-//             labelStyle: TextStyle(
-//               color: Color.fromARGB(255, 11, 108, 15),
-//             ),
-//           )

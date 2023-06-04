@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:ceiba_app/tools/design_system.dart';
 import 'package:ceiba_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import '../services/user_service.dart';
@@ -52,37 +53,42 @@ class _UserDetailsState extends State<UserDetailsView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Detalles del usuario'),
-      ),
-      body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _MainText(tittle: 'Nombre', description: _user?.name),
-                  const SizedBox(height: 16),
-                  _MainText(
-                      tittle: 'Correo electrónico', description: _user?.email),
-                  const SizedBox(height: 16),
-                  _MainText(tittle: 'Teléfono', description: _user?.phone),
-                  const SizedBox(height: 16),
-                  const _MainText(tittle: 'Publicaciones:'),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: _posts.length,
-                      itemBuilder: (context, index) {
-                        final post = _posts[index];
-                        return PostCard(post: post);
-                      },
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Detalles del usuario'),
+        ),
+        body: _isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: mainHorizontalPadding,
+                    vertical: mainVerticalPadding),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _MainText(tittle: 'Nombre', description: _user?.name),
+                    const SizedBox(height: mainVerticalPadding),
+                    _MainText(
+                        tittle: 'Correo electrónico',
+                        description: _user?.email),
+                    const SizedBox(height: mainVerticalPadding),
+                    _MainText(tittle: 'Teléfono', description: _user?.phone),
+                    const SizedBox(height: mainVerticalPadding),
+                    const _MainText(tittle: 'Publicaciones:'),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: _posts.length,
+                        itemBuilder: (context, index) {
+                          final post = _posts[index];
+                          return PostCard(post: post);
+                        },
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
+      ),
     );
   }
 }
@@ -105,14 +111,14 @@ class _MainText extends StatelessWidget {
         Text(
           tittle,
           style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
+              fontSize: secondaryTextSize,
+              fontWeight: FontWeight.bold,
+              color: primaryColor),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: secondaryVerticalPadding),
         Text(
           description ?? '',
-          style: const TextStyle(fontSize: 16),
+          style: const TextStyle(fontSize: secondaryTextSize),
         ),
       ],
     );
