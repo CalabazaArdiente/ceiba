@@ -1,2 +1,2 @@
 # ceiba
-Integrar servicios externos como Stripe para manejar los pagos.
+Aplicación móvil con Flutter con el objetivo de listar usuarios y las publicaciones que éstos realizan
