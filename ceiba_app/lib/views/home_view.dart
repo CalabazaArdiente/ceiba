@@ -91,24 +91,27 @@ class _HomeViewState extends State<HomeView> {
                 controller: _searchController,
                 decoration: const InputDecoration(
                   labelText: 'Buscar usuario',
-                  suffixIcon: Icon(Icons.search,
-                      color: Color.fromARGB(255, 11, 108, 15)),
+                  suffixIcon: Icon(
+                    Icons.search,
+                  ),
                 ),
               ),
             ),
             Expanded(
               child: _isLoading
                   ? const Center(child: CircularProgressIndicator())
-                  : Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ListView.builder(
-                        itemCount: _filteredUsers.length,
-                        itemBuilder: (context, index) {
-                          final user = _filteredUsers[index];
-                          return UserCard(user: user);
-                        },
-                      ),
-                    ),
+                  : _filteredUsers.isEmpty
+                      ? const Center(child: Text('List is empty'))
+                      : Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ListView.builder(
+                            itemCount: _filteredUsers.length,
+                            itemBuilder: (context, index) {
+                              final user = _filteredUsers[index];
+                              return UserCard(user: user);
+                            },
+                          ),
+                        ),
             ),
           ],
         ),

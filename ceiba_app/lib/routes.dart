@@ -1,7 +1,14 @@
-import 'package:ceiba_app/views/view.dart';
-import 'package:flutter/material.dart';
+import 'package:ceiba_app/views/views.dart';
+import 'package:get/get.dart';
 
-final Map<String, Widget Function(BuildContext)> appRoutes = {
-  '/': (context) => HomeView(),
-  '/details': (context) => UserDetailsView(),
-};
+final List<GetPage> appRoutes = [
+  // Define tus páginas aquí
+  GetPage(
+    name: '/',
+    page: () => const HomeView(),
+  ),
+  GetPage(
+    name: '/details',
+    page: () => UserDetailsView(userId: Get.arguments),
+  ),
+];

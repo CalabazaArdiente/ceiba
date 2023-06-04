@@ -4,9 +4,13 @@ import '../models/user.dart';
 
 class UserService {
   final String _baseUrl = 'https://jsonplaceholder.typicode.com';
+  final http.Client? client;
+
+  UserService({this.client});
 
   Future<List<User>> getUsers() async {
-    final response = await http.get(Uri.parse('$_baseUrl/users'));
+    final response =
+        await (client ?? http.Client()).get(Uri.parse('$_baseUrl/users'));
     if (response.statusCode == 200) {
       List<dynamic> data = json.decode(response.body);
       return data.map((user) => User.fromJson(user)).toList();
@@ -16,7 +20,8 @@ class UserService {
   }
 
   Future<User> getUserById(int id) async {
-    final response = await http.get(Uri.parse('$_baseUrl/users/$id'));
+    final response =
+        await (client ?? http.Client()).get(Uri.parse('$_baseUrl/users/$id'));
     if (response.statusCode == 200) {
       Map<String, dynamic> data = json.decode(response.body);
       return User.fromJson(data);

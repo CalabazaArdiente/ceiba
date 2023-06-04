@@ -2,14 +2,15 @@ import 'dart:developer';
 
 import 'package:ceiba_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../services/user_service.dart';
 import '../services/post_service.dart';
 import '../models/user.dart';
 import '../models/post.dart';
 
 class UserDetailsView extends StatefulWidget {
-  const UserDetailsView({super.key});
+  final int userId;
+
+  const UserDetailsView({required this.userId, super.key});
 
   @override
   _UserDetailsState createState() => _UserDetailsState();
@@ -25,7 +26,7 @@ class _UserDetailsState extends State<UserDetailsView> {
   @override
   void initState() {
     super.initState();
-    final userId = Get.arguments as int;
+    final userId = widget.userId;
     _loadData(userId);
   }
 
@@ -67,7 +68,7 @@ class _UserDetailsState extends State<UserDetailsView> {
                   _MainText(
                       tittle: 'Correo electrónico', description: _user?.email),
                   const SizedBox(height: 16),
-                  _MainText(tittle: 'Telefono', description: _user?.phone),
+                  _MainText(tittle: 'Teléfono', description: _user?.phone),
                   const SizedBox(height: 16),
                   const _MainText(tittle: 'Publicaciones:'),
                   Expanded(

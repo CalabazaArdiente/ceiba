@@ -9,11 +9,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       theme: ThemeData(
-        primaryColor: Color.fromARGB(255, 11, 108, 15),
+        primaryColor: const Color.fromARGB(255, 11, 108, 15),
       ),
       title: 'Prueba de ingreso',
       initialRoute: '/',
-      routes: appRoutes,
+      getPages: appRoutes, // Utiliza la propiedad getPages en lugar de routes
     );
   }
 }
